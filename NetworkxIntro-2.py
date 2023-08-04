@@ -31,7 +31,7 @@ while (value<=2000):
 print(costs)
 
 # Adding 16 edges to this network
-while (G.number_of_edges()<16):
+while (G.number_of_edges()<6):
     c1=random.choice(city_set)    # this will choose a node from the graph G.
     c2=random.choice(city_set)
     if (c1!=c2 and G.has_edge(c1,c2)==0):
@@ -48,8 +48,18 @@ There are different types of layouts, that can be used in order to draw the grap
     3. spectral_layout
 these were taught in the lectures ^_^
 '''
+# checking if there is a path between nodes
+for i in G.nodes():
+    for j in G.nodes():
+        print(i, j, nx.has_path(G,i,j))
 pos=nx.circular_layout(G)
-nx.draw(G)
+nx.draw(G, with_labels=1)
 # for displaying the weights of the edges: 
 nx.draw_networkx_edge_labels(G,pos)
 plt.show()
+
+# For calculating the path length between the nodes:
+
+# Checking if the network is connected:
+print ("The network G is connected? -> ",nx.is_connected(G))
+

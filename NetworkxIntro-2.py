@@ -51,7 +51,7 @@ these were taught in the lectures ^_^
 # checking if there is a path between nodes
 for i in G.nodes():
     for j in G.nodes():
-        print(i, j, nx.has_path(G,i,j))
+        print(i, j, nx.has_path(G,j,i))
 pos=nx.circular_layout(G)
 nx.draw(G, with_labels=1)
 # for displaying the weights of the edges: 
@@ -63,3 +63,23 @@ plt.show()
 # Checking if the network is connected:
 print ("The network G is connected? -> ",nx.is_connected(G))
 
+# to find the shortest path in the network
+# Also:
+# If there is no edge between any two nodes then, it will throw an exception in the form of error, so we need to handle it.
+# import sys -- for using try catch block
+
+try:
+    print("Shortest path from Punjab to Tripura: ",nx.dijkstra_path(G,'Punjab','Tripura'))
+    print("Length of Shortest path from Punjab to Tripura: ",nx.dijkstra_path_length(G,'Punjab','Tripura'))
+except:
+    print("No Path between 'Punjab' and 'Tripura'")
+nx.draw(G, with_labels=1)
+plt.show()
+
+# to find the path that is nearest to the provided source node:
+print(nx.single_source_dijkstra_path(G,'Uttar Pradesh'))
+nx.draw(G, with_labels=1)
+plt.show()
+
+
+# Meaning of Logarithm: if n means the number then, log of n is the number of digits in n
